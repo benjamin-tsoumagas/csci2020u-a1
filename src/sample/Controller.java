@@ -1,5 +1,7 @@
 package sample;
 
+import java.io.*;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Controller {
     public TextField precision;
     public TextField accuracy;
+
+//    File ham = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\ham");
+//    File ham2 = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\ham2");
+//    File spam = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\spam");
+
     @FXML
     private TableView<SpamDetector> tabView;
     @FXML
@@ -50,4 +57,5 @@ public class Controller {
         prob.setCellValueFactory(new PropertyValueFactory<>("spamProb"));
         tabView.setItems(EmailSource.getAllEmails());
     }
+
 }
