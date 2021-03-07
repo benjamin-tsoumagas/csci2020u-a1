@@ -1,7 +1,8 @@
 package sample;
 
-import java.io.*;
 import java.util.*;
+
+import com.sun.source.tree.Tree;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,13 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
+    //initialize textfields
     public TextField precision;
     public TextField accuracy;
 
-//    File ham = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\ham");
-//    File ham2 = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\ham2");
-//    File spam = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\spam");
+    //initialize frequency maps for ham and spam
+    private Map<String, Integer> trainHamFreq = new TreeMap<>();
+    private Map<String, Integer> trainSpamFreq = new TreeMap<>();
 
+    //initialize values for table and columns
     @FXML
     private TableView<SpamDetector> tabView;
     @FXML
@@ -28,34 +31,40 @@ public class Controller {
     private TableColumn<Object, Object> prob;
 
     public static class SpamDetector {
+        //initialize important attributes for each file
         private final String fileName;
         private final String classType;
         private final double spamProb;
 
+        //constructor for SpamDetector
         public SpamDetector(String fileName, String classType, double spamProb) {
             this.fileName = fileName;
             this.classType = classType;
             this.spamProb = spamProb;
         }
 
+        //accessors for SpamDetector
         public String getFileName() { return fileName; }
         public String getClassType() { return classType; }
         public double getSpamProb() { return spamProb; }
     }
 
+    //create an observable list that is put into the table
     public static class EmailSource {
         public static ObservableList<SpamDetector> getAllEmails() {
             ObservableList<SpamDetector> emails = FXCollections.observableArrayList();
-            emails.add(new SpamDetector("abc","def",0.79));
             return emails;
         }
     }
 
+    //initialize table and columns
     public void initialize(){
         file.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         type.setCellValueFactory(new PropertyValueFactory<>("classType"));
         prob.setCellValueFactory(new PropertyValueFactory<>("spamProb"));
         tabView.setItems(EmailSource.getAllEmails());
     }
+
+
 
 }
