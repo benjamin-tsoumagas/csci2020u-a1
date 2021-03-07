@@ -5,7 +5,7 @@
           xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
     <AnchorPane>
         <TableView fx:id="tabView" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
-        AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+        AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" minHeight="500" minWidth="600">
             <columns>
                 <TableColumn fx:id = "file" text = "File">
                     <cellValueFactory>
