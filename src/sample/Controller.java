@@ -1,11 +1,5 @@
 package sample;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
-
-import com.sun.source.tree.Tree;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +7,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Controller {
     //initialize textfields
@@ -73,19 +72,21 @@ public class Controller {
 
     public static void getFileWordCount(){
         sample.WordCounter wc = new sample.WordCounter();
-        File spamFile = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\spam");
-        File hamFile = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\hams");
+        File spamFile = new File("./src/sample/data/train/spam");
+        File hamFile = new File("./src/sample/data/train/hams");
         File hamOut = new File("hamOut.txt");
         File spamOut = new File("spamOut.txt");
         try {
             wc.parseFile(spamFile);
             wc.outputWordCount(2,spamOut);
+            wc.getUniqueWords();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
             wc.parseFile(hamFile);
             wc.outputWordCount(2, hamOut);
+            wc.getUniqueWords();
         } catch (IOException e) {
             e.printStackTrace();
         }
