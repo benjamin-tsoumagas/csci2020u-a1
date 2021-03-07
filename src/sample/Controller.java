@@ -1,5 +1,8 @@
 package sample;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 import com.sun.source.tree.Tree;
@@ -65,6 +68,26 @@ public class Controller {
         tabView.setItems(EmailSource.getAllEmails());
     }
 
+    //trainHamFreq<Map of words, number of files containing that word in ham folder>
+    //trainSpamFreq<Map of words, number of files containing that word in spam folder>
 
-
+    public static void getFileWordCount(){
+        sample.WordCounter wc = new sample.WordCounter();
+        File spamFile = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\spam");
+        File hamFile = new File("C:\\Users\\tsoum\\csci2020u-a1\\src\\sample\\data\\train\\hams");
+        File hamOut = new File("hamOut.txt");
+        File spamOut = new File("spamOut.txt");
+        try {
+            wc.parseFile(spamFile);
+            wc.outputWordCount(2,spamOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            wc.parseFile(hamFile);
+            wc.outputWordCount(2, hamOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
