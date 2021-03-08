@@ -18,7 +18,9 @@ public class Main extends Application {
         Image icon = new Image("file:no_spam.png");
         primaryStage.getIcons().add(icon);
 
-        //sample.Controller.getFileWordCount();
+        sample.Controller.getFileWordCount();
+        System.out.println(sample.Controller.hamFreq);
+        System.out.println(sample.Controller.spamFreq);
         primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
     }

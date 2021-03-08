@@ -9,18 +9,25 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Controller {
-    //initialize textfields
+    //initialize text fields
     public TextField precision;
     public TextField accuracy;
 
     //initialize frequency maps for ham and spam
-    private Map<String, Integer> trainHamFreq = new TreeMap<>();
-    private Map<String, Integer> trainSpamFreq = new TreeMap<>();
+    public static Map<String, Integer> trainHamFreq = new TreeMap<>();
+    public static Map<String, Integer> trainSpamFreq = new TreeMap<>();
+
+    //initialize arrays to store frequencies that words appear in files
+    public static ArrayList<Integer> hamFreq = new ArrayList<>();
+    public static ArrayList<Integer> spamFreq = new ArrayList<>();
 
     //initialize values for table and columns
     @FXML
@@ -79,16 +86,29 @@ public class Controller {
         try {
             wc.parseFile(spamFile);
             wc.outputWordCount(2,spamOut);
-            //wc.getUniqueWords();
+            System.out.println("Hello");
+            Scanner spamScan = new Scanner(new FileReader(spamOut));
+            while (spamScan.hasNextLine()){
+                String line = spamScan.nextLine();
+                int spamInt = Integer.parseInt(line);
+                spamFreq.add(spamInt);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
             wc.parseFile(hamFile);
             wc.outputWordCount(2, hamOut);
-            //wc.getUniqueWords();
+            Scanner hamScan = new Scanner(new FileReader(hamOut));
+            System.out.println("Hello");
+            while (hamScan.hasNextLine()){
+                String line = hamScan.nextLine();
+                int hamInt = Integer.parseInt(line);
+                hamFreq.add(hamInt);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
