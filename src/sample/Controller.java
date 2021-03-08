@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -25,9 +24,10 @@ public class Controller {
     public static Map<String, Integer> trainHamFreq = new TreeMap<>();
     public static Map<String, Integer> trainSpamFreq = new TreeMap<>();
 
-    //initialize arrays to store frequencies that words appear in files
-    public static ArrayList<Integer> hamFreq = new ArrayList<>();
-    public static ArrayList<Integer> spamFreq = new ArrayList<>();
+    //initialize probability maps
+    public static Map<String, Integer> wordInHam = new TreeMap<>();
+    public static Map<String, Integer> wordInSpam = new TreeMap<>();
+    public static Map<String, Integer> fileIsSpam = new TreeMap<>();
 
     //initialize values for table and columns
     @FXML
@@ -73,9 +73,6 @@ public class Controller {
         prob.setCellValueFactory(new PropertyValueFactory<>("spamProb"));
         tabView.setItems(EmailSource.getAllEmails());
     }
-
-    //trainHamFreq<Map of words, number of files containing that word in ham folder>
-    //trainSpamFreq<Map of words, number of files containing that word in spam folder>
 
     public static void getFileWordCount(){
         sample.WordCounter wc = new sample.WordCounter();
