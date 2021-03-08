@@ -89,9 +89,9 @@ public class Controller {
             System.out.println("Hello");
             Scanner spamScan = new Scanner(new FileReader(spamOut));
             while (spamScan.hasNextLine()){
-                String line = spamScan.nextLine();
-                int spamInt = Integer.parseInt(line);
-                spamFreq.add(spamInt);
+                String[] columns = spamScan.nextLine().split(":");
+                int spamInt = Integer.parseInt(columns[1]);
+                trainSpamFreq.put(columns[0],spamInt);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,9 +102,9 @@ public class Controller {
             Scanner hamScan = new Scanner(new FileReader(hamOut));
             System.out.println("Hello");
             while (hamScan.hasNextLine()){
-                String line = hamScan.nextLine();
-                int hamInt = Integer.parseInt(line);
-                hamFreq.add(hamInt);
+                String[] columns = hamScan.nextLine().split(":");
+                int hamInt = Integer.parseInt(columns[1]);
+                trainHamFreq.put(columns[0],hamInt);
             }
         } catch (IOException e) {
             e.printStackTrace();

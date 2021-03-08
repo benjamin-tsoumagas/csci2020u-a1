@@ -19,8 +19,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(icon);
 
         sample.Controller.getFileWordCount();
-        System.out.println(sample.Controller.hamFreq);
-        System.out.println(sample.Controller.spamFreq);
+        System.out.println(Controller.trainHamFreq);
+        System.out.println(Controller.trainSpamFreq);
         primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
     }
