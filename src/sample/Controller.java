@@ -79,14 +79,14 @@ public class Controller {
         try {
             wc.parseFile(spamFile);
             wc.outputWordCount(2,spamOut);
-            wc.getUniqueWords();
+            //wc.getUniqueWords();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
             wc.parseFile(hamFile);
             wc.outputWordCount(2, hamOut);
-            wc.getUniqueWords();
+            //wc.getUniqueWords();
         } catch (IOException e) {
             e.printStackTrace();
         }
