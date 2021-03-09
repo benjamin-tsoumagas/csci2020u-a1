@@ -1,0 +1,40 @@
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10"
+          style="-fx-background: #4682B4; -fx-border-color: orange;">
+    <AnchorPane>
+        <TableView fx:id="tabView" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+        AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" minHeight="500" minWidth="600"
+        style="-fx-background-color: transparent; -fx-border-color: orange;">
+            <columns>
+                <TableColumn fx:id = "file" text = "File" minWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fileName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id = "type" text = "Actual Class" minWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="classType"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id = "prob" text = "Spam Probability" minWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="spamProb"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </AnchorPane>
+    <HBox spacing="10" alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label text="Accuracy:" style="-fx-font-weight: bold;"/>
+        <TextField id ="addAccuracy" fx:id="accuracy"
+                   promptText="Accuracy" prefWidth="200"
+                    style="-fx-background-color: lavender; -fx-prompt-text-fill: black;"/>
+        <Label text="Precision:" style="-fx-font-weight: bold;"/>
+        <TextField id ="addPrecision" fx:id="precision"
+                   promptText="Precision" prefWidth="200"
+                   style="-fx-background-color: lavender; -fx-prompt-text-fill: black;"/>
+    </HBox>
+</GridPane>

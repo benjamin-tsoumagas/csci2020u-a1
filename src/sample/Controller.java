@@ -74,16 +74,20 @@ public class Controller {
         tabView.setItems(EmailSource.getAllEmails());
     }
 
+    //method to get number of files that contain unique words
     public static void getFileWordCount(){
+        //create an instance of the WordCounter class
         sample.WordCounter wc = new sample.WordCounter();
+        //setup directories to read from
         File spamFile = new File("./src/sample/data/train/spam");
         File hamFile = new File("./src/sample/data/train/hams");
+        //setup files to output the map to in the format 'word: count'
         File hamOut = new File("hamOut.txt");
         File spamOut = new File("spamOut.txt");
+
         try {
             wc.parseFile(spamFile);
             wc.outputWordCount(2,spamOut);
-            System.out.println("Hello");
             Scanner spamScan = new Scanner(new FileReader(spamOut));
             while (spamScan.hasNextLine()){
                 String[] columns = spamScan.nextLine().split(":");
@@ -97,7 +101,6 @@ public class Controller {
             wc.parseFile(hamFile);
             wc.outputWordCount(2, hamOut);
             Scanner hamScan = new Scanner(new FileReader(hamOut));
-            System.out.println("Hello");
             while (hamScan.hasNextLine()){
                 String[] columns = hamScan.nextLine().split(":");
                 int hamInt = Integer.parseInt(columns[1]);
