@@ -4,6 +4,8 @@ This project searches through directories containing emails and determines the p
 Each file is then loaded into a table with file name, class(ham or spam), and spam probability.
 The accuracy and precision for each calculation is displayed in the fields below the table.
 This project was made by Curtis Reynolds and Benjamin Tsoumagas.
+![image](https://user-images.githubusercontent.com/55511458/110412750-b068c400-805a-11eb-9a3a-1fb23dc00d5d.png)
+
 
 **Improvements**
 -
