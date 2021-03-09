@@ -7,10 +7,10 @@ This project was made by Curtis Reynolds and Benjamin Tsoumagas.
 
 **Improvements**
 -
-Added new application icon
-Changed background and border colours
-Made Accuracy and Precision labels bold
-Changed layout of accuracy and precision
+Added new application icon. \n
+Changed background and border colours. \n
+Made Accuracy and Precision labels bold. \n
+Changed layout of accuracy and precision. \n
 
 **How to run:**
 -
