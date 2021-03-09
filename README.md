@@ -26,3 +26,4 @@ Changed layout of accuracy and precision.
    
 **Other Resources**
 -
+For merging maps: https://howtodoinjava.com/java/collections/hashmap/merge-two-hashmaps/#:~:text=Merge%20two%20hashmaps%20%E2%80%93%20ignore%20duplicate%20keys%20This,we%20know%20hashmap%20does%20not%20allow%20duplicate%20keys.
