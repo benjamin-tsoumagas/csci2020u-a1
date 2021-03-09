@@ -11,6 +11,9 @@ public class WordCounter{
     //initialize repeatedWords as a HashSet
     HashSet<String> repeatedWords = new HashSet<>();
 
+    //initialize counter for number of files in a directory
+    public int numberFiles = 0;
+
     //initialize a WordCounter object with a new TreeMap wordCounts
     public WordCounter(){
         wordCounts = new TreeMap<>();
@@ -34,6 +37,7 @@ public class WordCounter{
             }
         }else {
             Scanner scanner = new Scanner(file);
+            numberFiles++;
             // scanning token by token
             while (scanner.hasNext()) {
                 String token = scanner.next();

@@ -74,41 +74,72 @@ public class Controller {
         tabView.setItems(EmailSource.getAllEmails());
     }
 
+    //method to return number of files in a directory
+    public static int getTotalFiles(File file){
+        int numberFiles = 0;
+        File[] listFiles = file.listFiles();
+        for (File current : listFiles) {
+            numberFiles++;
+        }
+        return numberFiles;
+    }
+
     //method to get number of files that contain unique words
     public static void getFileWordCount(){
         //create an instance of the WordCounter class
-        sample.WordCounter wc = new sample.WordCounter();
+        WordCounter wc = new WordCounter();
         //setup directories to read from
         File spamFile = new File("./src/sample/data/train/spam");
         File hamFile = new File("./src/sample/data/train/hams");
         //setup files to output the map to in the format 'word: count'
         File hamOut = new File("hamOut.txt");
         File spamOut = new File("spamOut.txt");
+        //setup file counts for spam/ham/total files
+        int spamCount = getTotalFiles(spamFile);
+        int hamCount = getTotalFiles(hamFile);
+        int totalCount = hamCount + spamCount;
 
         try {
+            //parse spam files and output how many files each word appears in, in a file
             wc.parseFile(spamFile);
             wc.outputWordCount(2,spamOut);
+            //scan every spam file
             Scanner spamScan = new Scanner(new FileReader(spamOut));
             while (spamScan.hasNextLine()){
+                //obtain word and count for each line
                 String[] columns = spamScan.nextLine().split(":");
+                //turn count from string to int
                 int spamInt = Integer.parseInt(columns[1]);
+                //input each word count pair into a map
                 trainSpamFreq.put(columns[0],spamInt);
+                //input each word probability pair into a map
+                wordInSpam.put(columns[0],spamInt/spamCount);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
+            //parse ham files and output how many files each word appears in, in a file
             wc.parseFile(hamFile);
             wc.outputWordCount(2, hamOut);
+            //scan every ham file
             Scanner hamScan = new Scanner(new FileReader(hamOut));
             while (hamScan.hasNextLine()){
+                //obtain word and count for each line
                 String[] columns = hamScan.nextLine().split(":");
+                //turn count from string to int
                 int hamInt = Integer.parseInt(columns[1]);
+                //input each word count pair into a map
                 trainHamFreq.put(columns[0],hamInt);
+                //input each word probability pair into a map
+                wordInHam.put(columns[0],hamInt/hamCount);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //merge maps into the form (word, probability file is spam)
+        wordInHam.forEach(
+                (key,value) -> wordInSpam.merge(key, value, (v1,v2) -> v1.equals(v2) ? v1 : v1/(v1+v2))
+        );
     }
 }
